@@ -312,4 +312,6 @@ function start-GraphConnectionHelper
     out-logfile -string "Validating that connection provides the required graph scopes."
 
     test-requiredGraphScopes -msGraphScopesRequired $msGraphScopesRequired
+
+    out-logfile -string "Graph connection established and validated successfully."
 }

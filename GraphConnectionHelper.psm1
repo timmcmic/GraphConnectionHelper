@@ -313,5 +313,21 @@ function start-GraphConnectionHelper
 
     test-requiredGraphScopes -msGraphScopesRequired $msGraphScopesRequired
 
+    $telemetryEndTime = get-universalDateTime #Start time for telemetry evaluation
+
+    [double]$telemetryElapsedSeconds = get-elapsedTime -startTime $telemetryStartTime -endTime $telemetryEndTime
+
+    $telemetryEventProperties = @{
+        GraphConnectionHelper = $telemetryEventName
+    }
+
+    $telemetryEventMetrics = @{
+         TotalTime = $telemetryElapsedSeconds  
+    }
+
+    send-TelemetryEvent -traceModuleName $traceModuleName -eventName $telemetryValues.telemetryEventName -eventMetrics $telemetryEventMetrics -eventProperties $telemetryEventProperties
+
+    send-TelemetryEvent -traceModuleName $traceModuleName -eventName $telemetryValues.telemetryEventName -eventMetrics $telemetryEventMetrics -eventProperties $telemetryEventProperties
+
     out-logfile -string "Graph connection established and validated successfully."
 }

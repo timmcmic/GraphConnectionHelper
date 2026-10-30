@@ -7,12 +7,14 @@ function test-GUIDFormat
         [Parameter(Mandatory = $true)]
         [string]$GUID
     )
+
+    $guidRegex = "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$"
     
     out-logfile -string "Entering test-GUIDFormat"
 
     out-logfile -string "Testing the provided GUID format."
 
-    if ($GUID -match "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")
+    if ($GUID -match $guidRegex)
     {
         out-logfile -string ("The provided GUID is in the correct format: "+$GUID)
     }

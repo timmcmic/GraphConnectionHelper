@@ -327,7 +327,5 @@ function start-GraphConnectionHelper
 
     send-TelemetryEvent -traceModuleName $traceModuleName -eventName $telemetryEventName -eventMetrics $telemetryEventMetrics -eventProperties $telemetryEventProperties
 
-    send-TelemetryEvent -traceModuleName $traceModuleName -eventName $telemetryValues.telemetryEventName -eventMetrics $telemetryEventMetrics -eventProperties $telemetryEventProperties
-
     out-logfile -string "Graph connection established and validated successfully."
 }

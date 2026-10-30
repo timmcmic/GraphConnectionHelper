@@ -13,6 +13,7 @@ function test-CertificateSubject
     try
     {
         $null = [System.Security.Cryptography.X509Certificates.X500DistinguishedName]::new($msGraphCertificateSubject)
+        out-logfile -string "Certificate subject is properly x500 distinguished name (DN) formatted."
     }
     catch
     {

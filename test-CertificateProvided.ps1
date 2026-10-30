@@ -11,6 +11,7 @@ function test-CertificateProvided
     try
     {
         Test-Certificate $msGraphCertificate -allowUntrusted -errorAction STOP
+        out-logfile -string "Provided certificate is an actual certificate - whether it will work is not determined."
     }
     catch
     {

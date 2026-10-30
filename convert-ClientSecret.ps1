@@ -15,6 +15,7 @@ Function convert-ClientSecret
     out-logfile -string "Entering convert-ClientSecret"
 
     try{
+        out-logfile -string "Converting client secret to secure password."
         $securePassword = ConvertTo-SecureString -String $msGraphClientSecret -AsPlainText -Force -errorAction STOP
     }
     catch
@@ -26,6 +27,7 @@ Function convert-ClientSecret
 
     try
     {
+        out-logfile -string "Creating PSCredential object."
         $credential = New-Object -TypeName System.Management.Automation.PSCredential -argumentList $msGraphClientID,$securePassword -errorAction Stop
     }
     catch

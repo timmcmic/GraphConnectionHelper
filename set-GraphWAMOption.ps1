@@ -12,10 +12,12 @@ function set-GraphWAMOption
     {
         if ($disable)
         {
+            out-logfile -string "Disabling graph WAM."
             Set-MgGraphOption -DisableLoginByWAM $true -errorAction STOP
         }
         else
         {
+            out-logfile -string "Enabling graph WAM."
             Set-MgGraphOption -DisableLoginByWAM $false -errorAction STOP
         }
     }

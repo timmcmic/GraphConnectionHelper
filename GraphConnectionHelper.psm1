@@ -100,9 +100,17 @@ function start-GraphConnectionHelper
     $telemetryStartTime = get-universalDateTime #Start time for telemetry evaluation
     $telemetryEventName = "Start-GraphConnectionHelper"
 
-    #Create the log file.
-    new-logFile -logFolderPath $logFolderPath
 
+    if ($global:LogFile)
+    {
+        out-logfile -string "Graph connection helper called from another module - use existing log file."
+    }
+    else
+    {
+         #Create the log file.
+        new-logFile -logFolderPath $logFolderPath
+    }
+   
     out-logfile -string "************************************************************"
     out-logfile -string 'Starting GraphConnectionHelper'
     out-logfile -string "************************************************************"

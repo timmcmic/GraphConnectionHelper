@@ -337,3 +337,42 @@ function start-GraphConnectionHelper
 
     out-logfile -string "Graph connection established and validated successfully."
 }
+
+<# This code can be recycled into custom modules using the same paramters as this module to use this as a wrapper for connections to graph.
+switch ($parameterSetName)
+    {
+        "Interactive" {
+            out-logfile -string "Starting interactive connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphEnvironmentName $msGraphEnvironmentName -msGraphTenantID $msGraphTenantID -msGraphScopesRequired $msGraphScopesRequired -msGraphLoginHint $msGraphLoginHint
+        }
+        "DeviceCodeFlow" {
+            out-logfile -string "Starting device code flow connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphScopesRequired $msGraphScopesRequired
+        }
+        "AccessToken" {
+            out-logfile -string "Starting access token connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphAccessToken $msGraphAccessToken
+        }
+        {($_ -eq "InteractiveCustomApp") -or ($_ -eq "InteractiveNoWAM")} {
+            out-logfile -string "Test"
+            out-logfile -string "Starting interactive custom app connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphEnvironmentName $msGraphEnvironmentName -msGraphTenantID $msGraphTenantID -msGraphClientID $msGraphClientID -msGraphScopesRequired $msGraphScopesRequired -msGraphLoginHint $msGraphLoginHint
+        }
+        "AppOnlyCertificateThumbprint" {
+            out-logfile -string "Starting app-only certificate thumbprint connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphEnvironmentName $msGraphEnvironmentName -msGraphTenantID $msGraphTenantID -msGraphClientID $msGraphClientID -msGraphCertificateThumbprint $msGraphCertificateThumbprint
+        }
+        "AppOnlyCertificateSubject" {
+            out-logfile -string "Starting app-only certificate subject connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphEnvironmentName $msGraphEnvironmentName -msGraphTenantID $msGraphTenantID -msGraphClientID $msGraphClientID -msGraphCertificateSubject $msGraphCertificateSubject
+        }
+        "AppOnlyCertificate" {
+            out-logfile -string "Starting app-only certificate connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphEnvironmentName $msGraphEnvironmentName -msGraphTenantID $msGraphTenantID -msGraphClientID $msGraphClientID -msGraphCertificate $msGraphCertificate
+        }
+        "AppOnlyClientSecret" {
+            out-logfile -string "Starting app-only client secret connection to Microsoft Graph."
+            start-graphConnectionHelper -msGraphEnvironmentName $msGraphEnvironmentName -msGraphTenantID $msGraphTenantID -msGraphClientSecret $msGraphClientSecret
+        }
+    }
+#>
